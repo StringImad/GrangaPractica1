@@ -14,16 +14,15 @@ import java.util.Scanner;
  */
 public class GestionAgricultores {
 
-    private static ArrayList<Agricultores> listaAgricultores = new ArrayList<>();
-
+    //private static ArrayList<Agricultores> listaAgricultores = new ArrayList<>();
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         String melocotones = "";
         int numeroAgricultores = 0;
         int numeroLimpio = 0;
         int cantidadTotal = 0;
-
-        boolean entero = false;
+        ListaAgricultores lista1 = new ListaAgricultores();
+        boolean entero = true;
         System.out.println("Bienvenido al programa");
         System.out.println("¿Cuantos agricultores hay?");
 
@@ -33,29 +32,42 @@ public class GestionAgricultores {
 
             System.out.println("Introduce la cantidad de fruta que trae el agricultor " + (i + 1));
             melocotones = teclado.nextLine();
-            listaAgricultores.add(new Agricultores(melocotones));
+
+            lista1.anadirNuevoAgricultor(new Agricultores(melocotones));
+
+            //ListaAgricultores.c add(new Agricultores(melocotones));
         }
 
-        for (Agricultores objeto : listaAgricultores) {
-            //hago una convercion explicita
-            cantidadTotal += Integer.parseInt(objeto.getUnidadesRecogidas());
+        for (int i = 0; i < lista1.getAgricultores().size(); i++) {
+            cantidadTotal += Integer.parseInt(lista1.getAgricultores().get(i).getUnidadesRecogidas());
+
         }
-        double comprobador = cantidadTotal / 4;
+        if (cantidadTotal / numeroAgricultores != Math.floor(cantidadTotal / numeroAgricultores)) {
+            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + (cantidadTotal / numeroAgricultores));
+
+        } else {
+            System.out.println(" La cantidad no puede corresponder a cada agricultor");
+
+        }
+//        for (ListaAgricultores objeto : lista1) {
+//            //hago una convercion explicita
+//            cantidadTotal += Integer.parseInt(objeto.getUnidadesRecogidas());
+//        }
+        //double numeroTotalCorrespondeAgricultor = cantidadTotal / numeroAgricultores;
 
         //obtenemos la parte entera del numero y se la restamos 
         //si es 0 pues entonces el número es entero 
-        if (comprobador - Math.floor(comprobador) == 0) {
-            entero = true;
-            numeroLimpio = (int) comprobador;
-        } else {
-            entero = false;
-        }
-
-        if (entero == true) {
-            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + numeroLimpio);
-        } else {
-            System.out.println(" La cantidad no puede corresponder a cada agricultor");
-        }
-
+//        if (numeroTotalCorrespondeAgricultor - Math.floor(numeroTotalCorrespondeAgricultor) == 0) {
+//            entero = true;
+//            numeroLimpio = (int) numeroTotalCorrespondeAgricultor;
+//        } else {
+//            entero = false;
+//        }
+//
+//        if (entero == true) {
+//            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + numeroLimpio);
+//        } else {
+//            System.out.println(" La cantidad no puede corresponder a cada agricultor");
+//        }
     }
 }
