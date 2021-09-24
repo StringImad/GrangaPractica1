@@ -20,7 +20,7 @@ public class GestionAgricultores {
         String melocotones = "";
         int numeroAgricultores = 0;
         int numeroLimpio = 0;
-        int cantidadTotal = 0;
+        double cantidadTotal = 0;
         ListaAgricultores lista1 = new ListaAgricultores();
         boolean entero = true;
         System.out.println("Bienvenido al programa");
@@ -35,39 +35,19 @@ public class GestionAgricultores {
 
             lista1.anadirNuevoAgricultor(new Agricultores(melocotones));
 
-            //ListaAgricultores.c add(new Agricultores(melocotones));
         }
 
         for (int i = 0; i < lista1.getAgricultores().size(); i++) {
             cantidadTotal += Integer.parseInt(lista1.getAgricultores().get(i).getUnidadesRecogidas());
 
         }
-        if (cantidadTotal / numeroAgricultores != Math.floor(cantidadTotal / numeroAgricultores)) {
+        if (cantidadTotal / numeroAgricultores == Math.floor(cantidadTotal / numeroAgricultores)) {
             System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + (cantidadTotal / numeroAgricultores));
 
         } else {
             System.out.println(" La cantidad no puede corresponder a cada agricultor");
 
         }
-//        for (ListaAgricultores objeto : lista1) {
-//            //hago una convercion explicita
-//            cantidadTotal += Integer.parseInt(objeto.getUnidadesRecogidas());
-//        }
-        //double numeroTotalCorrespondeAgricultor = cantidadTotal / numeroAgricultores;
 
-        //obtenemos la parte entera del numero y se la restamos 
-        //si es 0 pues entonces el número es entero 
-//        if (numeroTotalCorrespondeAgricultor - Math.floor(numeroTotalCorrespondeAgricultor) == 0) {
-//            entero = true;
-//            numeroLimpio = (int) numeroTotalCorrespondeAgricultor;
-//        } else {
-//            entero = false;
-//        }
-//
-//        if (entero == true) {
-//            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + numeroLimpio);
-//        } else {
-//            System.out.println(" La cantidad no puede corresponder a cada agricultor");
-//        }
     }
 }
