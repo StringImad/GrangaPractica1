@@ -11,21 +11,26 @@ package granja;
  */
 public class Agricultores {
 
-    private String unidadesRecogidas;
+    private int unidadesRecogidas;
 
     public Agricultores() {
     }
 
-    public Agricultores(String unidadesRecogidas) {
+    public Agricultores(int unidadesRecogidas) {
         this.unidadesRecogidas = unidadesRecogidas;
     }
 
-    public String getUnidadesRecogidas() {
+    public int getUnidadesRecogidas() {
         return unidadesRecogidas;
     }
 
-    public void setUnidadesRecogidas(String unidadesRecogidas) {
+    public void setUnidadesRecogidas(int unidadesRecogidas) {
         this.unidadesRecogidas = unidadesRecogidas;
+    }
+
+    @Override
+    public String toString() {
+        return "Agricultores{" + "unidadesRecogidas=" + unidadesRecogidas + '}';
     }
 
 }

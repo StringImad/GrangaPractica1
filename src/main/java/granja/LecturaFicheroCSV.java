@@ -18,9 +18,10 @@ import java.util.ArrayList;
  */
 public class LecturaFicheroCSV {
 
-    private static ArrayList<Agricultores> leeFichero(String fichero) {
+    public static ArrayList<Agricultores> leeFichero(String fichero) {
         String[] tokens;
         String linea;
+        int suma;
         ArrayList<Agricultores> registros = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichero), "UTF-8"))) {
@@ -32,10 +33,12 @@ public class LecturaFicheroCSV {
 
                 //Creamos un nuevo objeto temporal agricultor
                 Agricultores tmp = new Agricultores();
-
+                
                 //Insertamos dentro del objeto lo que leemos del fichero
                 //en este caso las unidades leidas, separadas por un :
-                tmp.setUnidadesRecogidas((tokens[1]).trim());
+                suma = Integer.parseInt(tokens[0]) + Integer.parseInt(tokens[1]) +
+                        Integer.parseInt(tokens[2]) + Integer.parseInt(tokens[3]);
+                tmp.setUnidadesRecogidas(suma);
                 registros.add(tmp);
 
             }
