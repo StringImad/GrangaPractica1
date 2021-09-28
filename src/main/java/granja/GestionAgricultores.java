@@ -20,9 +20,9 @@ public class GestionAgricultores {
     //private static ArrayList<Agricultores> listaAgricultores = new ArrayList<>();
     public static void main(String[] args) {
 
-        boolean repetir = false;
+        boolean repetir = true;
         int eleccionUsuario;
-        // String[] botones = {"Calcular manualmente", "Importar fichero", "salir"};
+//         String[] botones = {"Calcular manualmente", "Importar fichero", "salir"};
         do {
 //            int ventana = JOptionPane.showOptionDialog(null, "Bienvenido al sistema, ¿Qué desea realizar?", " ",
 //                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
@@ -40,7 +40,6 @@ public class GestionAgricultores {
                 case 2:
                     System.out.println("--------Calculando unidades totales recogidas----");
                     leerFichero();
-
                     break;
                 case 3:
                     // al pulsar en case 2 se pone reptir en false por lo tanto sale del programa y
@@ -50,7 +49,6 @@ public class GestionAgricultores {
                     break;
 
             }
-            break;
 
         } while (repetir);
 
