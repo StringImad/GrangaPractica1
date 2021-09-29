@@ -61,30 +61,37 @@ public class GestionAgricultores {
         double cantidadTotal = 0;
         ListaAgricultores lista1 = new ListaAgricultores();
         boolean entero = true;
-        System.out.println("¿Cuantos agricultores hay?");
-
-        numeroAgricultores = teclado.nextInt();
+//        System.out.println("¿Cuantos agricultores hay?");
+//
+//        numeroAgricultores = teclado.nextInt();
         teclado.nextLine();
-        for (int i = 0; i < numeroAgricultores; i++) {
+        //    for (int i = 0; i < numeroAgricultores; i++) {
+        do {
 
-            System.out.println("Introduce la cantidad de fruta que trae el agricultor " + (i + 1));
+            System.out.println("Introduce la cantidad de fruta que trae el agricultor ");
             melocotones = teclado.nextLine();
+            if (Integer.parseInt(melocotones) != 0) {
+                lista1.anadirNuevoAgricultor(new Agricultores(Integer.parseInt(melocotones)));
 
-            lista1.anadirNuevoAgricultor(new Agricultores(Integer.parseInt(melocotones)));
+            }
 
-        }
+            for (int i = 0; i < lista1.getAgricultores().size(); i++) {
 
-        for (int i = 0; i < lista1.getAgricultores().size(); i++) {
-            cantidadTotal += lista1.getAgricultores().get(i).getUnidadesRecogidas();
+                cantidadTotal += lista1.getAgricultores().get(i).getUnidadesRecogidas();
 
-        }
+            }
+
+        } while (Integer.parseInt(melocotones) != 0);
+        System.out.println("Cantidad total: "+cantidadTotal);
+        // }
         if (cantidadTotal / numeroAgricultores == Math.floor(cantidadTotal / numeroAgricultores)) {
-            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + (cantidadTotal / numeroAgricultores));
+            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + (cantidadTotal / lista1.getAgricultores().size()));
 
         } else {
             System.out.println(" La cantidad no puede corresponder a cada agricultor");
 
         }
+
     }
 
     public static void leerFichero() {
