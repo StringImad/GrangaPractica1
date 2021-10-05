@@ -38,7 +38,7 @@ public class GestionAgricultores {
                     introduccionDatos();
                     break;
                 case 2:
-                    System.out.println("--------Calculando unidades totales recogidas----");
+                    System.out.println("--------Calculando unidades totales recogidas desde el fichero----");
                     leerFichero();
                     break;
                 case 3:
@@ -57,7 +57,7 @@ public class GestionAgricultores {
     public static void introduccionDatos() {
         String melocotones = "";
         int numeroAgricultores = 0;
-        int numeroLimpio = 0;
+        double numeroLimpio = 0;
         double cantidadTotal = 0;
         ListaAgricultores lista1 = new ListaAgricultores();
         boolean entero = true;
@@ -70,22 +70,20 @@ public class GestionAgricultores {
 
             System.out.println("Introduce la cantidad de fruta que trae el agricultor ");
             melocotones = teclado.nextLine();
-            if (Integer.parseInt(melocotones) != 0) {
-                lista1.anadirNuevoAgricultor(new Agricultores(Integer.parseInt(melocotones)));
-
-            }
-
-            for (int i = 0; i < lista1.getAgricultores().size(); i++) {
-
-                cantidadTotal += lista1.getAgricultores().get(i).getUnidadesRecogidas();
-
-            }
+            lista1.anadirNuevoAgricultor(new Agricultores(Integer.parseInt(melocotones)));
 
         } while (Integer.parseInt(melocotones) != 0);
-        System.out.println("Cantidad total: "+cantidadTotal);
+        for (int i = 0; i < lista1.getAgricultores().size(); i++) {
+
+            cantidadTotal += lista1.getAgricultores().get(i).getUnidadesRecogidas();
+
+        }
+        System.out.println("Cantidad total: " + cantidadTotal);
         // }
-        if (cantidadTotal / numeroAgricultores == Math.floor(cantidadTotal / numeroAgricultores)) {
-            System.out.println("Han traido una cantidad total de: " + cantidadTotal + " melecotones, a cada agricultor le tocan: " + (cantidadTotal / lista1.getAgricultores().size()));
+        numeroAgricultores = lista1.getAgricultores().size();
+        numeroLimpio = (cantidadTotal / numeroAgricultores);
+        if ((cantidadTotal / numeroAgricultores) == Math.floor(numeroLimpio)) {
+            System.out.println("Han traido una cantidad total de " + cantidadTotal + " melecotones y tenemos " + numeroAgricultores + " agricultores, a cada agricultor le tocan: " + (cantidadTotal / lista1.getAgricultores().size()));
 
         } else {
             System.out.println(" La cantidad no puede corresponder a cada agricultor");
@@ -95,7 +93,31 @@ public class GestionAgricultores {
     }
 
     public static void leerFichero() {
-        LecturaFicheroCSV.leeFichero("cantidadFruta.csv");
+        String melocotones = "";
+        int numeroAgricultores = 0;
+        double numeroLimpio = 0;
+        double cantidadTotal = 0;
+        ListaAgricultores lista1 = new ListaAgricultores();
+        boolean entero = true;
+//        System.out.println("¿Cuantos agricultores hay?");
+//
+//        numeroAgricultores = teclado.nextInt();
+        teclado.nextLine();
+        lista1.setListaAgricultores(LecturaFicheroCSV.leeFichero("cantidadFruta.csv"));
 
+        numeroAgricultores = lista1.getAgricultores().size();
+        for (int i = 0; i < lista1.getAgricultores().size(); i++) {
+
+            cantidadTotal += lista1.getAgricultores().get(i).getUnidadesRecogidas();
+
+        }
+        numeroLimpio = (cantidadTotal / numeroAgricultores);
+        if ((cantidadTotal / numeroAgricultores) == Math.floor(numeroLimpio)) {
+            System.out.println("Han traido una cantidad total de " + cantidadTotal + " melecotones y tenemos " + numeroAgricultores + " agricultores, a cada agricultor le tocan: " + (cantidadTotal / lista1.getAgricultores().size()));
+
+        } else {
+            System.out.println(" La cantidad no puede corresponder a cada agricultor");
+
+        }
     }
 }

@@ -33,11 +33,12 @@ public class LecturaFicheroCSV {
 
                 //Creamos un nuevo objeto temporal agricultor
                 Agricultores tmp = new Agricultores();
-                
+
                 //Insertamos dentro del objeto lo que leemos del fichero
                 //en este caso las unidades leidas, separadas por un :
-                suma = Integer.parseInt(tokens[0]) + Integer.parseInt(tokens[1]) +
-                        Integer.parseInt(tokens[2]) + Integer.parseInt(tokens[3]);
+                suma = Integer.parseInt(tokens[0]);
+//                + Integer.parseInt(tokens[1]) +
+//                        Integer.parseInt(tokens[2]) + Integer.parseInt(tokens[3]);
                 tmp.setUnidadesRecogidas(suma);
                 registros.add(tmp);
 
@@ -46,11 +47,6 @@ public class LecturaFicheroCSV {
             System.out.println(e.getMessage());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
-
-        System.out.println("----Lectura del fichero:-----");
-        for (Agricultores re : registros) {
-            System.out.println(re);
         }
 
         return registros;
