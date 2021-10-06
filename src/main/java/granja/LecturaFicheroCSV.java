@@ -22,9 +22,11 @@ public class LecturaFicheroCSV {
         String[] tokens;
         String linea;
         int suma;
+        boolean comprobacion = false;
+        int cero = 0;
         ArrayList<Agricultores> registros = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichero), "UTF-8"))) {
+        try ( BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichero), "UTF-8"))) {
 
             //mientras el metodo readline no devuelva null es que existen datos por leer
             while ((linea = br.readLine()) != null) {
@@ -36,12 +38,15 @@ public class LecturaFicheroCSV {
 
                 //Insertamos dentro del objeto lo que leemos del fichero
                 //en este caso las unidades leidas, separadas por un :
+                //  do{ 
                 suma = Integer.parseInt(tokens[0]);
+
 //                + Integer.parseInt(tokens[1]) +
 //                        Integer.parseInt(tokens[2]) + Integer.parseInt(tokens[3]);
                 tmp.setUnidadesRecogidas(suma);
                 registros.add(tmp);
-
+              
+                //   } while (Integer.parseInt(tokens[0]) != 0);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
