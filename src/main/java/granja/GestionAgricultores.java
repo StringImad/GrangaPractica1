@@ -17,23 +17,16 @@ public class GestionAgricultores {
 
     private static Scanner teclado = new Scanner(System.in);
 
-    //private static ArrayList<Agricultores> listaAgricultores = new ArrayList<>();
     public static void main(String[] args) {
 
         boolean repetir = true;
-        int eleccionUsuario;
         int ventana = 0;
         String[] botones = {"Calcular manualmente", "Importar fichero", "salir"};
         do {
 
-            //     do {
-//                System.out.println("Bienvenido al sistema, ¿Qué desea realizar?");
-//                System.out.println("\"1.- Calcular manualmente\", \"2.- Importar fichero\", \"3.- salir\"");
-//                eleccionUsuario = teclado.nextInt();
             ventana = JOptionPane.showOptionDialog(null, "Bienvenido al sistema, ¿Qué desea realizar?", " ",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
 
-            //  } while (ventana > 3 || ventana < 0);
             switch (ventana) {
 
                 case 0:
@@ -62,15 +55,12 @@ public class GestionAgricultores {
         double numeroLimpio = 0;
         double cantidadTotal = 0;
         ListaAgricultores lista1 = new ListaAgricultores();
-        int melecotonString = 0;//        System.out.println("¿Cuantos agricultores hay?");
-//
-//        numeroAgricultores = teclado.nextInt();
-        //  teclado.nextLine();
-        //    for (int i = 0; i < numeroAgricultores; i++) {
+        int melecotonString = 0;
+        int numOrdenAgri = 1;
         do {
 
             try {
-                melocotones = JOptionPane.showInputDialog("Introduce la cantidad de fruta que trae el agricultor ");
+                melocotones = JOptionPane.showInputDialog("Introduce la cantidad de fruta que trae el agricultor "+numOrdenAgri);
                 melecotonString = Integer.parseInt(melocotones);
 
             } catch (NumberFormatException nfe) {
@@ -78,45 +68,38 @@ public class GestionAgricultores {
                 JOptionPane.showMessageDialog(null, "Formato incorrecto:\n"
                         + "Por favor ingrese un valor valido", "Error de formato",
                         JOptionPane.ERROR_MESSAGE);
-                //   compruebaNumCorrect = false;
             }
 
             lista1.anadirNuevoAgricultor(new Agricultores(melecotonString));
+            numOrdenAgri++;
 
-//            System.out.println("Introduce la cantidad de fruta que trae el agricultor ");
-//            melocotones = teclado.nextLine();
         } while (Integer.parseInt(melocotones) != 0);
         for (int i = 0; i < lista1.getAgricultores().size(); i++) {
 
             cantidadTotal += lista1.getAgricultores().get(i).getUnidadesRecogidas();
 
         }
-        //   System.out.println("Cantidad total: " + cantidadTotal);
-        // }
+
         numeroAgricultores = lista1.getAgricultores().size();
         numeroLimpio = (cantidadTotal / numeroAgricultores);
         if ((cantidadTotal / numeroAgricultores) == Math.floor(numeroLimpio)) {
-            // System.out.println("Han traido una cantidad total de " + cantidadTotal + " melecotones y tenemos " + numeroAgricultores + " agricultores, a cada agricultor le tocan: " + (cantidadTotal / lista1.getAgricultores().size()));
+
             JOptionPane.showMessageDialog(null, "Han traido una cantidad total de " + cantidadTotal + " melecotones\nTenemos " + numeroAgricultores + " agricultores\ncada agricultor le tocan: " + (cantidadTotal / lista1.getAgricultores().size()) + " melecotones");
 
         } else {
             JOptionPane.showMessageDialog(null, "Cantidad incorrecta:\n"
-                    + "Por favor ingrese un valor valido", "Error de reparticion",
+                    + "No puede hacerse la divison", "Error de reparticion",
                     JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
     public static void leerFichero() {
-        String melocotones = "";
         int numeroAgricultores = 0;
         double numeroLimpio = 0;
         double cantidadTotal = 0;
         ListaAgricultores lista1 = new ListaAgricultores();
-        boolean entero = true;
-//        System.out.println("¿Cuantos agricultores hay?");
-//
-//        numeroAgricultores = teclado.nextInt();
+
         lista1.setListaAgricultores(LecturaFicheroCSV.leeFichero("cantidadFruta.csv"));
 
         numeroAgricultores = lista1.getAgricultores().size();
